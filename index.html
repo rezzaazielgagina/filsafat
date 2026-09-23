@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Masalah Ilmu Pengetahuan — Perspektif Filsafat Ilmu</title>
+  <meta name="description" content="Presentasi Interaktif Mata Kuliah Ilmu Filsafat - Topik: Masalah Ilmu Pengetahuan (Perspektif Filsafat Ilmu)">
+  
+  <!-- Tailwind CSS v3 Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Fonts Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            title: ['Outfit', 'sans-serif'],
+            body: ['Plus Jakarta Sans', 'sans-serif'],
+            serif: ['Cinzel', 'serif'],
+          },
+          colors: {
+            dark: {
+              DEFAULT: '#070913',
+              card: 'rgba(18, 24, 43, 0.65)',
+              cardHover: 'rgba(28, 37, 65, 0.85)',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(7, 9, 19, 0.8);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(56, 189, 248, 0.4);
+    }
+
+    /* Ambient Orb Animations */
+    @keyframes floatOrb {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(40px, -30px) scale(1.08); }
+      100% { transform: translate(-30px, 40px) scale(0.95); }
+    }
+    .animate-orb-1 { animation: floatOrb 20s infinite alternate ease-in-out; }
+    .animate-orb-2 { animation: floatOrb 20s infinite alternate ease-in-out -7s; }
+    .animate-orb-3 { animation: floatOrb 20s infinite alternate ease-in-out -14s; }
+
+    /* Slide Transition engine */
+    .slide-section {
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(0.96) translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.5s;
+    }
+    .slide-section.active {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1) translateY(0);
+    }
+  </style>
+</head>
+<body class="bg-[#070913] text-slate-100 font-body overflow-hidden select-none w-screen h-screen relative">
+
+  <!-- Ambient Glowing Background Orbs -->
+  <div class="fixed top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full blur-[120px] opacity-40 bg-[radial-gradient(circle,#6366f1,transparent_70%)] pointer-events-none z-0 animate-orb-1"></div>
+  <div class="fixed bottom-[-15%] right-[-10%] w-[55vw] h-[55vw] rounded-full blur-[120px] opacity-40 bg-[radial-gradient(circle,#06b6d4,transparent_70%)] pointer-events-none z-0 animate-orb-2"></div>
+  <div class="fixed top-[40%] left-[40%] w-[35vw] h-[35vw] rounded-full blur-[120px] opacity-30 bg-[radial-gradient(circle,#a855f7,transparent_70%)] pointer-events-none z-0 animate-orb-3"></div>
+  
+  <!-- Subtle Grid Overlay -->
+  <div class="fixed inset-0 z-1 pointer-events-none opacity-20 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
+
+  <!-- Top Navigation Bar -->
+  <header class="fixed top-0 left-0 right-0 h-16 flex items-center justify-between px-4 md:px-8 z-50 bg-[#070913]/80 backdrop-blur-xl border-b border-white/10">
+    <div class="flex items-center gap-3 font-title font-bold text-sm md:text-base tracking-wide text-slate-100">
+      <span class="bg-gradient-to-r from-cyan-500 to-indigo-500 text-white text-[11px] font-extrabold px-2.5 py-1 rounded-md uppercase tracking-wider">
+        FILSAFAT ILMU
+      </span>
+      <span class="hidden sm:inline text-slate-300">Masalah Ilmu Pengetahuan</span>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <div id="slideCounter" class="font-title text-xs md:text-sm font-semibold text-sky-400 bg-sky-400/10 px-3.5 py-1 rounded-full border border-sky-400/20">
+        Slide 01 / 18
+      </div>
+      <button id="btnOverview" title="Daftar Slide (M)" aria-label="Daftar Slide" class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 hover:border-sky-400 hover:text-sky-400 hover:bg-white/10 transition-all flex items-center justify-center text-slate-200">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      </button>
+      <button id="btnFullscreen" title="Layar Penuh (F)" aria-label="Layar Penuh" class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 hover:border-sky-400 hover:text-sky-400 hover:bg-white/10 transition-all flex items-center justify-center text-slate-200">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+      </button>
+    </div>
+
+    <!-- Top Progress Bar -->
+    <div class="absolute bottom-0 left-0 w-full h-[3px] bg-white/10">
+      <div id="progressBar" class="h-full w-0 bg-gradient-to-r from-sky-400 via-indigo-400 to-purple-500 transition-all duration-300 shadow-[0_0_10px_#38bdf8]"></div>
+    </div>
+  </header>
+
+  <!-- Main Slide Viewport -->
+  <main class="relative w-screen h-[calc(100vh-128px)] mt-16 z-10">
+
+    <!-- Slide 1 — Judul -->
+    <section class="slide-section active absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col justify-center overflow-y-auto" id="slide-1">
+      <div class="max-w-4xl w-full mx-auto text-center">
+        <div class="mb-6">
+          <span class="inline-block bg-sky-400/15 text-sky-400 border border-sky-400/30 text-xs md:text-sm font-semibold px-4 py-1.5 rounded-full uppercase tracking-wider">
+            MATA KULIAH: ILMU FILSAFAT
+          </span>
+        </div>
+        
+        <h1 class="font-title text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight mb-4 bg-gradient-to-r from-white via-slate-100 to-sky-300 bg-clip-text text-transparent">
+          MASALAH ILMU PENGETAHUAN
+        </h1>
+        
+        <p class="font-serif text-lg md:text-2xl text-indigo-300 tracking-widest uppercase mb-8">
+          Perspektif Filsafat Ilmu
+        </p>
+
+        <div class="bg-gradient-to-r from-indigo-500/10 via-cyan-500/10 to-indigo-500/10 border-t-2 border-b-2 border-sky-400/40 rounded-2xl p-6 md:p-8 my-6 backdrop-blur-xl">
+          <p class="font-body italic text-lg md:text-2xl text-white leading-relaxed">
+            “Bagaimana manusia memperoleh pengetahuan yang benar, dan sejauh mana pengetahuan tersebut dapat dipercaya?”
+          </p>
+        </div>
+
+        <!-- Anggota Kelompok -->
+        <div class="mt-6 mb-4 max-w-2xl mx-auto">
+          <div class="text-xs font-bold uppercase tracking-widest text-sky-400 mb-3">Anggota Kelompok 10:</div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs md:text-sm">
+            <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl px-4 py-2.5 flex items-center justify-between hover:border-sky-400/40 transition-all">
+              <span class="font-semibold text-slate-100">Singgih Hadi Wibowo</span>
+              <span class="text-sky-400 font-mono text-xs bg-sky-400/10 px-2 py-0.5 rounded border border-sky-400/20">202443579043</span>
+            </div>
+            <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl px-4 py-2.5 flex items-center justify-between hover:border-sky-400/40 transition-all">
+              <span class="font-semibold text-slate-100">Rezza Aziel Gagina</span>
+              <span class="text-sky-400 font-mono text-xs bg-sky-400/10 px-2 py-0.5 rounded border border-sky-400/20">202543570002</span>
+            </div>
+            <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl px-4 py-2.5 flex items-center justify-between hover:border-sky-400/40 transition-all">
+              <span class="font-semibold text-slate-100">Ade Sukma</span>
+              <span class="text-sky-400 font-mono text-xs bg-sky-400/10 px-2 py-0.5 rounded border border-sky-400/20">202643570001</span>
+            </div>
+            <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl px-4 py-2.5 flex items-center justify-between hover:border-sky-400/40 transition-all">
+              <span class="font-semibold text-slate-100">Irfan Maulana</span>
+              <span class="text-sky-400 font-mono text-xs bg-sky-400/10 px-2 py-0.5 rounded border border-sky-400/20">202643570012</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6 flex flex-wrap justify-center gap-3 text-xs md:text-sm text-slate-400">
+          <span class="bg-white/5 border border-white/10 px-4 py-1.5 rounded-full">Topik: Masalah Ilmu Pengetahuan</span>
+          <span class="bg-white/5 border border-white/10 px-4 py-1.5 rounded-full">Epistemologi & Metodologi</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 2 — Pengertian Ilmu Pengetahuan -->
+    <section class="slide-section absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col justify-center overflow-y-auto" id="slide-2">
+      <div class="max-w-6xl w-full mx-auto">
+        <div class="mb-6">
+          <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-sky-400 mb-1">
+            <span>02</span> • Konsep Dasar
+          </div>
+          <h2 class="font-title text-3xl md:text-4xl font-extrabold text-white">Pengertian Ilmu Pengetahuan</h2>
+          <p class="text-slate-400 text-base md:text-lg mt-1">Pengetahuan yang diperoleh melalui proses yang sistematis, rasional, dan dapat dipertanggungjawabkan.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-6">
+          <div class="bg-[#12182b]/70 backdrop-blur-xl border border-white/10 rounded-2xl p-5 hover:border-sky-400/40 hover:bg-[#1c2541]/85 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden group">
+            <div class="absolute top-0 left-0 right-0 h-1 bg-sky-400"></div>
+            <span class="inline-block bg-sky-400/15 text-sky-400 border border-sky-400/30 text-xs font-semibold px-2.5 py-0.5 rounded-full mb-3">01. Sistematis</span>
+            <h3 class="font-title text-lg font-bold text-white mb-1">Tersusun Teratur</h3>
+            <p class="text-slate-400 text-sm">Memiliki struktur, urutan logis, dan saling berkaitan antar elemen pengetahuan.</p>
+          </div>
+
+          <div class="bg-[#12182b]/70 backdrop-blur-xl border border-white/10 rounded-2xl p-5 hover:border-indigo-400/40 hover:bg-[#1c2541]/85 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-1 bg-indigo-400"></div>
+            <span class="inline-block bg-indigo-400/15 text-indigo-400 border border-indigo-400/30 text-xs font-semibold px-2.5 py-0.5 rounded-full mb-3">02. Logis</span>
+            <h3 class="font-title text-lg font-bold text-white mb-1">Penalaran Rasional</h3>
+            <p class="text-slate-400 text-sm">Dapat diterima oleh akal sehat dan hukum-hukum logika pemikiran.</p>
+          </div>
+
+          <div class="bg-[#12182b]/70 backdrop-blur-xl border border-white/10 rounded-2xl p-5 hover:border-emerald-400/40 hover:bg-[#1c2541]/85 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-1 bg-emerald-400"></div>
+            <span class="inline-block bg-emerald-400/15 text-emerald-400 border border-emerald-400/30 text-xs font-semibold px-2.5 py-0.5 rounded-full mb-3">03. Empiris</span>
+            <h3 class="font-title text-lg font-bold text-white mb-1">Fakta Teramati</h3>
+            <p class="text-slate-400 text-sm">Berakar pada fakta nyata atau pengalaman inderawi yang dapat diobservasi.</p>
+          </div>
+
+          <div class="bg-[#12182b]/70 backdrop-blur-xl border border-white/10 rounded-2xl p-5 hover:border-amber-400/40 hover:bg-[#1c2541]/85 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-1 bg-amber-400"></div>
+            <span class="inline-block bg-amber-400/15 text-amber-400 border border-amber-400/30 text-xs font-semibold px-2.5 py-0.5 rounded-full mb-3">04. Objektif</span>
+            <h3 class="font-title text-lg font-bold text-white mb-1">Bebas Subjektivitas</h3>
+            <p class="text-slate-400 text-sm">Berusaha meminimalkan bias pribadi, emosi, dan pandangan perseorangan.</p>
+          </div>
+
+          <div class="bg-[#12182b]/70 backdrop-blur-xl border border-white/10 rounded-2xl p-5 hover:border-sky-400/40 hover:bg-[#1c2541]/85 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-1 bg-sky-400"></div>
+            <span class="inline-block bg-sky-400/15 text-sky-400 border border-sky-400/30 text-xs font-semibold px-2.5 py-0.5 rounded-full mb-3">05. Teruji</span>
+            <h3 class="font-title text-lg font-bold text-white mb-1">Dapat Diverifikasi</h3>
+            <p class="text-slate-400 text-sm">Dapat diuji ulang secara independen melalui metode ilmiah ilmiah yang jelas.</p>
+          </div>
+
+          <div class="bg-[#12182b]/70 backdrop-blur-xl border border-white/10 rounded-2xl p-5 hover:border-indigo-400/40 hover:bg-[#1c2541]/85 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-1 bg-indigo-400"></div>
+            <span class="inline-block bg-indigo-400/15 text-indigo-400 border border-indigo-400/30 text-xs font-semibold px-2.5 py-0.5 rounded-full mb-3">06. Terbuka</span>
+            <h3 class="font-title text-lg font-bold text-white mb-1">Dapat Berkembang</h3>
+            <p class="text-slate-400 text-sm">Bersifat dinamis, siap direvisi ketika ditemukan bukti atau temuan baru.</p>
+          </div>
+        </div>
+
+        <div class="bg-sky-400/10 border border-sky-400/30 rounded-2xl p-4 backdrop-blur-xl">
+          <strong class="text-sky-400 text-xs font-bold uppercase tracking-wider">💡 Contoh Nyata:</strong>
+          <p class="text-sm md:text-base text-slate-200 mt-1">
+            Pengetahuan bahwa <em>"Air mendidih pada kondisi tertentu (misal 100°C pada tekanan 1 atm)"</em> diperoleh melalui pengamatan empiris, eksperimen berulang, dan verifikasi rasional yang dapat direplikasi oleh siapa saja.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 3 — Ilmu Pengetahuan dalam Perspektif Filsafat -->
+    <section class="slide-section absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col justify-center overflow-y-auto" id="slide-3">
+      <div class="max-w-6xl w-full mx-auto">
+        <div class="mb-6">
+          <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-sky-400 mb-1">
+            <span>03</span> • Perspektif Filosofis
+          </div>
+          <h2 class="font-title text-3xl md:text-4xl font-extrabold text-white">Ilmu Pengetahuan dalam Perspektif Filsafat</h2>
+          <p class="text-slate-400 text-base md:text-lg mt-1">Filsafat tidak hanya bertanya "Apa yang kita ketahui?", tetapi mendobrak asumsi dasar pengetahuan.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-[#12182b]/70 backdrop-blur-xl border border-white/10 rounded-2xl p-6">
+            <h3 class="text-sky-400 font-title text-lg font-bold mb-4">Pertanyaan Kritis Filsafat:</h3>
+            <ul class="space-y-3 text-slate-200 text-sm md:text-base">
+              <li class="flex items-start gap-3"><span class="w-6 h-6 rounded-full bg-sky-400/20 text-sky-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">?</span> Bagaimana kita memperoleh pengetahuan?</li>
+              <li class="flex items-start gap-3"><span class="w-6 h-6 rounded-full bg-sky-400/20 text-sky-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">?</span> Bagaimana kita mengetahui bahwa pengetahuan tersebut benar?</li>
+              <li class="flex items-start gap-3"><span class="w-6 h-6 rounded-full bg-sky-400/20 text-sky-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">?</span> Apa batas kemampuan manusia dalam mengetahui sesuatu?</li>
+              <li class="flex items-start gap-3"><span class="w-6 h-6 rounded-full bg-sky-400/20 text-sky-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">?</span> Apakah semua hal dapat diketahui melalui ilmu?</li>
+              <li class="flex items-start gap-3"><span class="w-6 h-6 rounded-full bg-sky-400/20 text-sky-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">?</span> Apa yang membedakan ilmu dengan opini atau kepercayaan?</li>
+              <li class="flex items-start gap-3"><span class="w-6 h-6 rounded-full bg-sky-400/20 text-sky-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">?</span> Apakah ilmu selalu menghasilkan kebenaran?</li>
+            </ul>
+          </div>
+
+          <div class="bg-gradient-to-br from-indigo-500/20 via-[#12182b] to-cyan-500/10 border border-indigo-400/40 rounded-2xl p-6 md:p-8 flex flex-col justify-between">
+            <div>
+              <span class="inline-block bg-indigo-400/15 text-indigo-300 border border-indigo-400/30 text-xs font-semibold px-3 py-1 rounded-full mb-4">CABANG FILSAFAT UTAMA</span>
+              <h3 class="font-title text-3xl font-extrabold text-white mb-3 tracking-wide">EPISTEMOLOGI</h3>
+              <p class="text-slate-300 text-base leading-relaxed">
+                Epistemologi adalah cabang filsafat yang secara khusus membahas hakikat, sumber, metode, batas-batas, serta validitas pengetahuan manusia.
+              </p>
+            </div>
+            <div class="pt-4 border-t border-white/10 mt-6">
+              <span class="text-xs font-bold text-sky-400 tracking-wider uppercase">Landasan Utama Filsafat Ilmu</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 4 — Apa yang Dimaksud dengan "Masalah Ilmu Pengetahuan"? -->
+    <section class="slide-section absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col justify-center overflow-y-auto" id="slide-4">
+      <div class="max-w-6xl w-full mx-auto">
+        <div class="mb-6">
+          <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-sky-400 mb-1">
+            <span>04</span> • Pemetaan Masalah
+          </div>
+          <h2 class="font-title text-3xl md:text-4xl font-extrabold text-white">Apa yang Dimaksud dengan "Masalah Ilmu Pengetahuan"?</h2>
+          <p class="text-slate-400 text-base md:text-lg mt-1">Berbagai persoalan filosofis yang muncul dalam proses manusia memperoleh, mengembangkan, menggunakan, dan menilai pengetahuan.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="bg-[#12182b]/70 backdrop-blur-xl border border-white/10 rounded-2xl p-5 hover:border-sky-400/40 hover:-translate-y-1 transition-all">
+            <span class="bg-sky-400/15 text-sky-400 text-xs font-bold px-2.5 py-1 rounded-full border border-sky-400/30">01</span>
+            <h3 class="font-title text-base font-bold text-white mt-3 mb-1">Masalah Sumber Pengetahuan</h3>
+            <p class="text-xs text-slate-400">Dari mana pengetahuan berasal? Akal, pengalaman, atau sintesis keduanya?</p>
+          </div>
+
+          <div class="bg-[#12182b]/70 backdrop-blur-xl border border-white/10 rounded-2xl p-5 hover:border-indigo-400/40 hover:-translate-y-1 transition-all">
+            <span class="bg-indigo-400/15 text-indigo-400 text-xs font-bold px-2.5 py-1 rounded-full border border-indigo-400/30">02</span>
+            <h3 class="font-title text-base font-bold text-white mt-3 mb-1">Masalah Kebenaran</h3>
+            <p class="text-xs text-slate-400">Kapan suatu klaim dikatakan benar? Sesuai fakta, konsisten, atau berguna?</p>
+          </div>
+
+          <div class="bg-[#12182b]/70 backdrop-blur-xl border border-white/10 rounded-2xl p-5 hover:border-amber-400/40 hover:-translate-y-1 transition-all">
+            <span class="bg-amber-400/15 text-amber-400 text-xs font-bold px-2.5 py-1 rounded-full border border-amber-400/30">03</span>
+            <h3 class="font-title text-base font-bold text-white mt-3 mb-1">Masalah Metode Ilmiah</h3>
+            <p class="text-xs text-slate-400">Apakah metode penelitian selalu sah dan bebas dari kesesatan berpikir?</p>
+          </div>
+
+          <div class="bg-[#12182b]/70 backdrop-blur-xl border border-white/10 rounded-2xl p-5 hover:border-emerald-400/40 hover:-translate-y-1 transition-all">
+            <span class="bg-emerald-400/15 text-emerald-400 text-xs font-bold px-2.5 py-1 rounded-full border border-emerald-400/30">04</span>
+            <h3 class="font-title text-base font-bold text-white mt-3 mb-1">Masalah Objektivitas</h3>
+            <p class="text-xs text-slate-400">Bisakah manusia yang memiliki bias menghasilkan pengetahuan 100% netral?</p>
+          </div>
+
+          <div class="bg-[#12182b]/70 backdrop-blur-xl border border-white/10 rounded-2xl p-5 hover:border-sky-400/40 hover:-translate-y-1 transition-all">
+            <span class="bg-sky-400/15 text-sky-400 text-xs font-bold px-2.5 py-1 rounded-full border border-sky-400/30">05</span>
+            <h3 class="font-title text-base font-bold text-white mt-3 mb-1">Masalah Batas Ilmu</h3>
+            <p class="text-xs text-slate-400">Apa wilayah yang bisa dijangkau sains vs persoalan eksistensial & moral?</p>
+          </div>
+
+          <div class="bg-[#12182b]/70 backdrop-blur-xl border border-white/10 rounded-2xl p-5 hover:border-indigo-400/40 hover:-translate-y-1 transition-all">
+            <span class="bg-indigo-400/15 text-indigo-400 text-xs font-bold px-2.5 py-1 rounded-full border border-indigo-400/30">06</span>
+            <h3 class="font-title text-base font-bold text-white mt-3 mb-1">Masalah Ilmu & Nilai</h3>
+            <p class="text-xs text-slate-400">Apakah sains bebas nilai (value-free) atau selalu terikat nilai kemanusiaan?</p>
+          </div>
+
+          <div class="bg-[#12182b]/70 backdrop-blur-xl border border-white/10 rounded-2xl p-5 hover:border-amber-400/40 hover:-translate-y-1 transition-all sm:col-span-2">
+            <span class="bg-amber-400/15 text-amber-400 text-xs font-bold px-2.5 py-1 rounded-full border border-amber-400/30">07</span>
+            <h3 class="font-title text-base font-bold text-white mt-3 mb-1">Masalah Etika Penggunaan Ilmu</h3>
+            <p class="text-xs text-slate-400">Sejauh mana teknologi & pengetahuan boleh diaplikasikan demi keselamatan dan martabat manusia?</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 5 — Masalah Sumber Pengetahuan -->
+    <section class="slide-section absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col justify-center overflow-y-auto" id="slide-5">
+      <div class="max-w-6xl w-full mx-auto">
+        <div class="mb-6">
+          <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-sky-400 mb-1">
+            <span>05</span> • Epistemologi Utama
+          </div>
+          <h2 class="font-title text-3xl md:text-4xl font-extrabold text-white">Masalah Sumber Pengetahuan</h2>
+          <p class="text-slate-400 text-base md:text-lg mt-1">Pertanyaan utama: <em>"Dari mana pengetahuan manusia berasal?"</em></p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-[#12182b]/70 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:border-sky-400/40 hover:-translate-y-1 transition-all relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-1 bg-sky-400"></div>
+            <span class="bg-sky-400/15 text-sky-400 border border-sky-400/30 text-xs font-semibold px-3 py-1 rounded-full inline-block mb-3">1. RASIONALISME</span>
+            <h3 class="font-title text-xl font-bold text-white mb-2">Akal & Penalaran</h3>
+            <p class="text-slate-300 text-sm leading-relaxed mb-4">
+              Pengetahuan sejati diperoleh terutama melalui akal budi, ide bawaan (innate ideas), dan kalkulasi deduktif rasional.
+            </p>
+            <div class="border-t border-white/10 pt-3">
+              <small class="text-sky-400 font-bold text-xs uppercase">Tokoh Utama:</small>
+              <ul class="text-xs text-slate-200 mt-1 space-y-0.5">
+                <li>• René Descartes</li>
+                <li>• Baruch Spinoza</li>
+                <li>• Gottfried Wilhelm Leibniz</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="bg-[#12182b]/70 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:border-indigo-400/40 hover:-translate-y-1 transition-all relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-1 bg-indigo-400"></div>
+            <span class="bg-indigo-400/15 text-indigo-400 border border-indigo-400/30 text-xs font-semibold px-3 py-1 rounded-full inline-block mb-3">2. EMPIRISME</span>
+            <h3 class="font-title text-xl font-bold text-white mb-2">Pengalaman & Indera</h3>
+            <p class="text-slate-300 text-sm leading-relaxed mb-4">
+              Pengetahuan berasal dari pengamatan inderawi terhadap dunia nyata (Tabula Rasa — jiwa bagaikan kertas putih).
+            </p>
+            <div class="border-t border-white/10 pt-3">
+              <small class="text-indigo-400 font-bold text-xs uppercase">Tokoh Utama:</small>
+              <ul class="text-xs text-slate-200 mt-1 space-y-0.5">
+                <li>• John Locke</li>
+                <li>• George Berkeley</li>
+                <li>• David Hume</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="bg-[#12182b]/70 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:border-amber-400/40 hover:-translate-y-1 transition-all relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-1 bg-amber-400"></div>
+            <span class="bg-amber-400/15 text-amber-400 border border-amber-400/30 text-xs font-semibold px-3 py-1 rounded-full inline-block mb-3">3. KRITISISME</span>
+            <h3 class="font-title text-xl font-bold text-white mb-2">Sintesis Pengalaman & Akal</h3>
+            <p class="text-slate-300 text-sm leading-relaxed mb-4">
+              Pengetahuan merupakan hasil perpaduan antara bahan mentah pengalaman inderawi dan struktur kognitif bawaan pemikiran.
+            </p>
+            <div class="border-t border-white/10 pt-3">
+              <small class="text-amber-400 font-bold text-xs uppercase">Tokoh Utama:</small>
+              <ul class="text-xs text-slate-200 mt-1 space-y-0.5">
+                <li>• Immanuel Kant</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 6 — Masalah Kebenaran -->
+    <section class="slide-section absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col justify-center overflow-y-auto" id="slide-6">
+      <div class="max-w-6xl w-full mx-auto">
+        <div class="mb-6">
+          <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-sky-400 mb-1">
+            <span>06</span> • Teori Kebenaran
+          </div>
+          <h2 class="font-title text-3xl md:text-4xl font-extrabold text-white">Masalah Kebenaran</h2>
+          <p class="text-slate-400 text-base md:text-lg mt-1">Pertanyaan fundamental: <em>"Kapan suatu pengetahuan dapat disebut benar?"</em></p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-[#12182b]/70 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:border-sky-400/40 transition-all">
+            <span class="bg-sky-400/15 text-sky-400 border border-sky-400/30 text-xs font-semibold px-3 py-1 rounded-full inline-block mb-3">KORESPONDENSI</span>
+            <h3 class="font-title text-lg font-bold text-white mb-2">Kesesuaian dengan Fakta</h3>
+            <p class="text-slate-300 text-sm mb-4">
+              Sebuah pernyataan dianggap benar apabila berkesesuaian langsung dengan kenyataan empiris atau fakta di lapangan.
+            </p>
+            <div class="bg-sky-400/10 border border-sky-400/20 rounded-xl p-3 text-xs text-slate-200">
+              <strong>Contoh:</strong> “Air membeku pada suhu 0°C dalam kondisi tekanan tertentu.” (Terbukti fisik).
+            </div>
+          </div>
+
+          <div class="bg-[#12182b]/70 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:border-indigo-400/40 transition-all">
+            <span class="bg-indigo-400/15 text-indigo-400 border border-indigo-400/30 text-xs font-semibold px-3 py-1 rounded-full inline-block mb-3">KOHERENSI</span>
+            <h3 class="font-title text-lg font-bold text-white mb-2">Konsistensi Logis</h3>
+            <p class="text-slate-300 text-sm mb-4">
+              Sebuah pernyataan dianggap benar apabila konsisten dengan pernyataan lain yang sudah diakui dalam suatu sistem pemikiran.
+            </p>
+            <div class="bg-indigo-400/10 border border-indigo-400/20 rounded-xl p-3 text-xs text-slate-200">
+              <strong>Contoh:</strong> Teori matematika & geometri aksiomatis (1 + 1 = 2 konsisten dalam aljabar).
+            </div>
+          </div>
+
+          <div class="bg-[#12182b]/70 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:border-amber-400/40 transition-all">
+            <span class="bg-amber-400/15 text-amber-400 border border-amber-400/30 text-xs font-semibold px-3 py-1 rounded-full inline-block mb-3">PRAGMATIK</span>
+            <h3 class="font-title text-lg font-bold text-white mb-2">Manfaat Praktis</h3>
+            <p class="text-slate-300 text-sm mb-4">
+              Kebenaran diukur berdasarkan keberhasilan, kegunaan, atau dampak praktis dari suatu gagasan dalam pemecahan masalah.
+            </p>
+            <div class="bg-amber-400/10 border border-amber-400/20 rounded-xl p-3 text-xs text-slate-200">
+              <strong>Contoh:</strong> Formulasi obat terbukti benar karena berhasil menyembuhkan penyakit secara efektif.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 7 — Masalah Metode Ilmiah -->
+    <section class="slide-section absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col justify-center overflow-y-auto" id="slide-7">
+      <div class="max-w-6xl w-full mx-auto">
+        <div class="mb-6">
+          <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-sky-400 mb-1">
+            <span>07</span> • Metodologi
+          </div>
+          <h2 class="font-title text-3xl md:text-4xl font-extrabold text-white">Masalah Metode Ilmiah</h2>
+          <p class="text-slate-400 text-base md:text-lg mt-1">Ilmu membutuhkan metode untuk memperoleh pengetahuan yang dapat dipertanggungjawabkan.</p>
+        </div>
+
+        <!-- Flowchart Stepper -->
+        <div class="flex flex-wrap items-center justify-between gap-2 my-6 bg-[#12182b]/70 backdrop-blur-xl p-4 md:p-6 rounded-2xl border border-white/10">
+          <div class="bg-[#12182b] border border-white/10 rounded-xl px-4 py-3 text-center flex-1 min-w-[130px]">
+            <strong class="text-sky-400 text-sm">1. Observasi</strong>
+          </div>
+          <div class="text-sky-400 font-bold text-lg">➔</div>
+          <div class="bg-[#12182b] border border-white/10 rounded-xl px-4 py-3 text-center flex-1 min-w-[130px]">
+            <strong class="text-indigo-400 text-sm">2. Pertanyaan</strong>
+          </div>
+          <div class="text-sky-400 font-bold text-lg">➔</div>
+          <div class="bg-[#12182b] border border-white/10 rounded-xl px-4 py-3 text-center flex-1 min-w-[130px]">
+            <strong class="text-purple-400 text-sm">3. Hipotesis</strong>
+          </div>
+          <div class="text-sky-400 font-bold text-lg">➔</div>
+          <div class="bg-[#12182b] border border-white/10 rounded-xl px-4 py-3 text-center flex-1 min-w-[130px]">
+            <strong class="text-amber-400 text-sm">4. Eksperimen</strong>
+          </div>
+          <div class="text-sky-400 font-bold text-lg">➔</div>
+          <div class="bg-[#12182b] border border-white/10 rounded-xl px-4 py-3 text-center flex-1 min-w-[130px]">
+            <strong class="text-emerald-400 text-sm">5. Analisis</strong>
+          </div>
+          <div class="text-sky-400 font-bold text-lg">➔</div>
+          <div class="bg-[#12182b] border border-white/10 rounded-xl px-4 py-3 text-center flex-1 min-w-[130px]">
+            <strong class="text-white text-sm">6. Kesimpulan</strong>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+          <div class="bg-[#12182b]/70 backdrop-blur-xl border border-white/10 rounded-2xl p-5">
+            <h3 class="text-rose-400 font-title text-base font-bold mb-3">Persoalan Filosofis Metodologi:</h3>
+            <ul class="space-y-2 text-xs md:text-sm text-slate-200">
+              <li class="flex items-start gap-2"><span class="text-rose-400 font-bold">!</span> Apakah metode ilmiah selalu menghasilkan kebenaran mutlak?</li>
+              <li class="flex items-start gap-2"><span class="text-rose-400 font-bold">!</span> Apakah semua fenomena dapat diuji secara ilmiah?</li>
+              <li class="flex items-start gap-2"><span class="text-rose-400 font-bold">!</span> Apakah hasil penelitian dapat bebas dari kesalahan?</li>
+              <li class="flex items-start gap-2"><span class="text-rose-400 font-bold">!</span> Seberapa jauh hasil penelitian dapat digeneralisasi?</li>
+            </ul>
+          </div>
+
+          <div class="bg-amber-400/10 border border-amber-400/30 rounded-2xl p-5 backdrop-blur-xl">
+            <span class="bg-amber-400/20 text-amber-300 text-xs font-bold px-2.5 py-1 rounded-full inline-block mb-2">KARL POPPER</span>
+            <h3 class="font-title text-lg font-bold text-white mb-2">Konsep Falsifikasi</h3>
+            <p class="text-slate-300 text-xs md:text-sm leading-relaxed">
+              Menurut Karl Popper, teori ilmiah yang baik harus memungkinkan adanya pengujian yang dapat menunjukkan bahwa teori tersebut <strong>salah (falsifiable)</strong>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 8 — Masalah Objektivitas Ilmu -->
+    <section class="slide-section absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col justify-center overflow-y-auto" id="slide-8">
+      <div class="max-w-6xl w-full mx-auto">
+        <div class="mb-6">
+          <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-sky-400 mb-1">
+            <span>08</span> • Netralitas Riset
+          </div>
+          <h2 class="font-title text-3xl md:text-4xl font-extrabold text-white">Masalah Objektivitas Ilmu</h2>
+          <p class="text-slate-400 text-base md:text-lg mt-1">Ilmu idealnya bersifat objektif, namun praktiknya dilakukan oleh manusia yang memiliki subjektivitas.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-[#12182b]/70 backdrop-blur-xl border border-rose-500/30 rounded-2xl p-6">
+            <h3 class="text-rose-400 font-title text-lg font-bold mb-3">Faktor Subjektivitas Peneliti:</h3>
+            <p class="text-slate-300 text-sm mb-3">
+              Proses ilmiah dilakukan manusia yang memiliki latar belakang, asumsi, nilai, kepentingan, keterbatasan persepsi, dan metode.
+            </p>
+            <div class="bg-black/30 p-3.5 rounded-xl border border-white/5 text-xs text-slate-300">
+              <strong>Tantangan:</strong> Peneliti dapat memilih topik penelitian, metode penelitian, maupun cara menafsirkan data.
+            </div>
+          </div>
+
+          <div class="bg-[#12182b]/70 backdrop-blur-xl border border-emerald-500/30 rounded-2xl p-6">
+            <h3 class="text-emerald-400 font-title text-lg font-bold mb-3">Instrumen Penjaga Objektivitas:</h3>
+            <ul class="space-y-2 text-xs md:text-sm text-slate-200">
+              <li class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> Metodologi yang jelas</li>
+              <li class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> Transparansi data</li>
+              <li class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> Pengujian ulang (Replikasi)</li>
+              <li class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> Peer review</li>
+              <li class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> Kritik ilmiah terbuka</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 9 — Masalah Batas Ilmu Pengetahuan -->
+    <section class="slide-section absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col justify-center overflow-y-auto" id="slide-9">
+      <div class="max-w-6xl w-full mx-auto">
+        <div class="mb-6">
+          <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-sky-400 mb-1">
+            <span>09</span> • Batas Kemampuan
+          </div>
+          <h2 class="font-title text-3xl md:text-4xl font-extrabold text-white">Masalah Batas Ilmu Pengetahuan</h2>
+          <p class="text-slate-400 text-base md:text-lg mt-1">Ilmu memiliki kemampuan besar, tetapi tidak berarti dapat menjawab semua pertanyaan manusia.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-[#12182b]/70 backdrop-blur-xl border border-white/10 rounded-2xl p-6">
+            <span class="bg-sky-400/15 text-sky-400 text-xs font-semibold px-3 py-1 rounded-full mb-3 inline-block">DOMAIN SAINS</span>
+            <h3 class="text-sky-400 font-title text-xl font-bold mb-2">Menjawab Pertanyaan "Bagaimana?"</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Ilmu sangat efektif menjelaskan bagaimana suatu fenomena alam terjadi, mekanisme fisik, serta sebab-akibat yang terukur.
+            </p>
+          </div>
+
+          <div class="bg-[#12182b]/70 backdrop-blur-xl border border-white/10 rounded-2xl p-6">
+            <span class="bg-indigo-400/15 text-indigo-400 text-xs font-semibold px-3 py-1 rounded-full mb-3 inline-block">DOMAIN FILSAFAT & MORAL</span>
+            <h3 class="text-indigo-400 font-title text-xl font-bold mb-2">Pertanyaan Eksistensial</h3>
+            <ul class="space-y-2 text-xs md:text-sm text-slate-200 mt-2">
+              <li class="flex items-start gap-2"><span class="text-indigo-400 font-bold">?</span> “Mengapa manusia harus hidup dengan baik?”</li>
+              <li class="flex items-start gap-2"><span class="text-indigo-400 font-bold">?</span> “Apa tujuan hidup manusia?”</li>
+              <li class="flex items-start gap-2"><span class="text-indigo-400 font-bold">?</span> “Apa yang membuat suatu tindakan dianggap bermoral?”</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mt-6 bg-gradient-to-r from-indigo-500/15 via-cyan-500/15 to-indigo-500/15 border border-sky-400/30 rounded-2xl p-5 text-center">
+          <strong class="text-amber-400 text-sm uppercase tracking-wider">Kesimpulan Sementara:</strong>
+          <p class="text-white text-base md:text-lg mt-1 font-medium">
+            Ilmu memiliki batas dalam objek, metode, dan kemampuannya menjelaskan realitas secara holistik.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 10 — Masalah Ilmu dan Nilai -->
+    <section class="slide-section absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col justify-center overflow-y-auto" id="slide-10">
+      <div class="max-w-6xl w-full mx-auto">
+        <div class="mb-6">
+          <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-sky-400 mb-1">
+            <span>10</span> • Bebas Nilai vs Terikat Nilai
+          </div>
+          <h2 class="font-title text-3xl md:text-4xl font-extrabold text-white">Masalah Ilmu dan Nilai</h2>
+          <p class="text-slate-400 text-base md:text-lg mt-1">Apakah ilmu bebas nilai? Penggunaan ilmu selalu berada dalam konteks nilai manusia.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-[#12182b]/70 backdrop-blur-xl border border-white/10 rounded-2xl p-6">
+            <h3 class="text-sky-400 font-title text-lg font-bold mb-3">Studi Kasus: Artificial Intelligence (AI)</h3>
+            <div class="grid grid-cols-2 gap-3 mt-3">
+              <div class="bg-emerald-500/10 border border-emerald-500/20 p-3 rounded-xl">
+                <strong class="text-emerald-400 text-xs">PELUANG MANFAAT:</strong>
+                <ul class="text-xs text-slate-300 mt-1 space-y-1">
+                  <li>• Pendidikan</li>
+                  <li>• Kesehatan</li>
+                  <li>• Penelitian</li>
+                  <li>• Produktivitas</li>
+                </ul>
+              </div>
+              <div class="bg-rose-500/10 border border-rose-500/20 p-3 rounded-xl">
+                <strong class="text-rose-400 text-xs">RISIKO DUA SISI:</strong>
+                <ul class="text-xs text-slate-300 mt-1 space-y-1">
+                  <li>• Privasi</li>
+                  <li>• Penyalahgunaan data</li>
+                  <li>• Bias algoritma</li>
+                  <li>• Disinformasi</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-gradient-to-br from-indigo-500/20 to-cyan-500/10 border border-indigo-400/30 rounded-2xl p-6 flex flex-col justify-center">
+            <span class="bg-amber-400/20 text-amber-300 text-xs font-bold px-3 py-1 rounded-full self-start mb-3">PERTANYAAN ETIS UTAMA</span>
+            <p class="text-white text-lg md:text-xl font-semibold leading-relaxed">
+              “Apakah sesuatu yang dapat dilakukan secara ilmiah atau teknis selalu boleh dilakukan secara moral?”
+            </p>
+            <p class="text-slate-300 text-sm mt-3">
+              Jawabannya membutuhkan pertimbangan etika, bukan hanya pertimbangan ilmiah teknis.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 11 — Masalah Etika dalam Ilmu Pengetahuan -->
+    <section class="slide-section absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col justify-center overflow-y-auto" id="slide-11">
+      <div class="max-w-6xl w-full mx-auto">
+        <div class="mb-6">
+          <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-sky-400 mb-1">
+            <span>11</span> • Dimensi Etika
+          </div>
+          <h2 class="font-title text-3xl md:text-4xl font-extrabold text-white">Masalah Etika dalam Ilmu Pengetahuan</h2>
+          <p class="text-slate-400 text-base md:text-lg mt-1">Perkembangan ilmu memberikan manfaat besar, tetapi juga dapat menimbulkan risiko bagi manusia.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+          <div class="bg-[#12182b]/70 backdrop-blur-xl border border-white/10 rounded-2xl p-5">
+            <span class="bg-sky-400/15 text-sky-400 text-xs font-semibold px-2.5 py-0.5 rounded-full">Penelitian Manusia</span>
+            <h4 class="font-title text-base font-bold text-white mt-3 mb-1">Persetujuan & Hak</h4>
+            <p class="text-xs text-slate-400">Apakah peserta memberikan persetujuan (consent)? Apakah hak & keselamatan dilindungi?</p>
+          </div>
+
+          <div class="bg-[#12182b]/70 backdrop-blur-xl border border-white/10 rounded-2xl p-5">
+            <span class="bg-indigo-400/15 text-indigo-400 text-xs font-semibold px-2.5 py-0.5 rounded-full">Bioteknologi</span>
+            <h4 class="font-title text-base font-bold text-white mt-3 mb-1">Modifikasi Makhluk</h4>
+            <p class="text-xs text-slate-400">Sejauh mana manusia boleh memodifikasi makhluk hidup & kehidupan genetik?</p>
+          </div>
+
+          <div class="bg-[#12182b]/70 backdrop-blur-xl border border-white/10 rounded-2xl p-5">
+            <span class="bg-amber-400/15 text-amber-400 text-xs font-semibold px-2.5 py-0.5 rounded-full">Teknologi Digital</span>
+            <h4 class="font-title text-base font-bold text-white mt-3 mb-1">Privasi & Keamanan</h4>
+            <p class="text-xs text-slate-400">Bagaimana menjaga privasi manusia dan mencegah teknologi merugikan masyarakat?</p>
+          </div>
+
+          <div class="bg-[#12182b]/70 backdrop-blur-xl border border-white/10 rounded-2xl p-5">
+            <span class="bg-emerald-400/15 text-emerald-400 text-xs font-semibold px-2.5 py-0.5 rounded-full">Kecerdasan Buatan</span>
+            <h4 class="font-title text-base font-bold text-white mt-3 mb-1">Tanggung Jawab AI</h4>
+            <p class="text-xs text-slate-400">Siapa yang bertanggung jawab atas keputusan AI? Bagaimana mengatasi bias & data?</p>
+          </div>
+        </div>
+
+        <div class="bg-indigo-500/15 border border-indigo-400/30 rounded-2xl p-4 text-center">
+          <p class="text-white text-base md:text-lg font-bold">
+            💡 <em>"Ilmu memberikan kemampuan kepada manusia; etika membantu menentukan bagaimana kemampuan tersebut digunakan."</em>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 12 — Ilmu Pengetahuan dan Perubahan Paradigma -->
+    <section class="slide-section absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col justify-center overflow-y-auto" id="slide-12">
+      <div class="max-w-6xl w-full mx-auto">
+        <div class="mb-6">
+          <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-sky-400 mb-1">
+            <span>12</span> • Dinamika Sains
+          </div>
+          <h2 class="font-title text-3xl md:text-4xl font-extrabold text-white">Ilmu Pengetahuan & Perubahan Paradigma</h2>
+          <p class="text-slate-400 text-base md:text-lg mt-1">Menurut Thomas S. Kuhn, perkembangan ilmu tidak selalu berjalan linear, melainkan mengalami perubahan paradigma.</p>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-between gap-2 my-6 bg-[#12182b]/70 backdrop-blur-xl p-5 rounded-2xl border border-white/10">
+          <div class="bg-[#12182b] border border-white/10 rounded-xl p-3 text-center flex-1 min-w-[140px]">
+            <strong class="text-sky-400 text-sm">Paradigma Lama</strong>
+          </div>
+          <div class="text-sky-400 font-bold">➔</div>
+          <div class="bg-[#12182b] border border-white/10 rounded-xl p-3 text-center flex-1 min-w-[140px]">
+            <strong class="text-amber-400 text-sm">Anomali</strong>
+          </div>
+          <div class="text-sky-400 font-bold">➔</div>
+          <div class="bg-[#12182b] border border-white/10 rounded-xl p-3 text-center flex-1 min-w-[140px]">
+            <strong class="text-rose-400 text-sm">Krisis</strong>
+          </div>
+          <div class="text-sky-400 font-bold">➔</div>
+          <div class="bg-[#12182b] border border-white/10 rounded-xl p-3 text-center flex-1 min-w-[140px]">
+            <strong class="text-emerald-400 text-sm">Paradigma Baru</strong>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+          <div class="bg-[#12182b]/70 backdrop-blur-xl border border-rose-500/30 rounded-2xl p-5">
+            <span class="bg-rose-500/20 text-rose-300 text-xs font-bold px-2.5 py-0.5 rounded-full">PARADIGMA LAMA</span>
+            <h3 class="font-title text-lg font-bold text-white mt-2">Geosentrisme</h3>
+            <p class="text-slate-300 text-sm mt-1">Bumi dianggap sebagai pusat alam semesta.</p>
+          </div>
+
+          <div class="bg-[#12182b]/70 backdrop-blur-xl border border-emerald-500/30 rounded-2xl p-5">
+            <span class="bg-emerald-500/20 text-emerald-300 text-xs font-bold px-2.5 py-0.5 rounded-full">REVOLUSI ILMIAH ➔ PARADIGMA BARU</span>
+            <h3 class="font-title text-lg font-bold text-white mt-2">Heliosentrisme</h3>
+            <p class="text-slate-300 text-sm mt-1">Matahari menjadi pusat sistem tata surya dalam model astronomi yang berkembang.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 13 — Apakah Ilmu Pengetahuan Selalu Benar? -->
+    <section class="slide-section absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col justify-center overflow-y-auto" id="slide-13">
+      <div class="max-w-6xl w-full mx-auto">
+        <div class="mb-6">
+          <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-sky-400 mb-1">
+            <span>13</span> • Sifat Tentatif Ilmu
+          </div>
+          <h2 class="font-title text-3xl md:text-4xl font-extrabold text-white">Apakah Ilmu Pengetahuan Selalu Benar?</h2>
+          <p class="text-slate-400 text-base md:text-lg mt-1">Tidak selalu. Ilmu bersifat tentatif (dapat diperbaiki atau ditinggalkan ketika terdapat bukti lebih kuat).</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-amber-400/10 border border-amber-400/30 rounded-2xl p-6 backdrop-blur-xl flex flex-col justify-center">
+            <h3 class="text-amber-400 font-title text-xl font-bold mb-3">Kekuatan Utama Ilmu Pengetahuan:</h3>
+            <p class="text-white text-base leading-relaxed">
+              Bukan karena ilmu selalu sempurna tanpa cela, melainkan karena ilmu <strong>memungkinkan dirinya untuk dikritik, diuji, diperbaiki, dan dikembangkan</strong>.
+            </p>
+          </div>
+
+          <div class="bg-[#12182b]/70 backdrop-blur-xl border border-white/10 rounded-2xl p-6">
+            <h3 class="text-sky-400 font-title text-lg font-bold mb-3">Sikap Ilmiah Sejati Membutuhkan:</h3>
+            <ul class="space-y-2 text-sm text-slate-200">
+              <li class="flex items-center gap-3"><span class="w-6 h-6 rounded-full bg-sky-400/20 text-sky-400 font-bold text-xs flex items-center justify-center shrink-0">1</span> Keterbukaan</li>
+              <li class="flex items-center gap-3"><span class="w-6 h-6 rounded-full bg-sky-400/20 text-sky-400 font-bold text-xs flex items-center justify-center shrink-0">2</span> Keraguan yang rasional</li>
+              <li class="flex items-center gap-3"><span class="w-6 h-6 rounded-full bg-sky-400/20 text-sky-400 font-bold text-xs flex items-center justify-center shrink-0">3</span> Pengujian</li>
+              <li class="flex items-center gap-3"><span class="w-6 h-6 rounded-full bg-sky-400/20 text-sky-400 font-bold text-xs flex items-center justify-center shrink-0">4</span> Kritik</li>
+              <li class="flex items-center gap-3"><span class="w-6 h-6 rounded-full bg-sky-400/20 text-sky-400 font-bold text-xs flex items-center justify-center shrink-0">5</span> Kesediaan memperbaiki kesalahan</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 14 — Masalah Demarkasi -->
+    <section class="slide-section absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col justify-center overflow-y-auto" id="slide-14">
+      <div class="max-w-6xl w-full mx-auto">
+        <div class="mb-6">
+          <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-sky-400 mb-1">
+            <span>14</span> • Demarkasi
+          </div>
+          <h2 class="font-title text-3xl md:text-4xl font-extrabold text-white">Masalah Demarkasi</h2>
+          <p class="text-slate-400 text-base md:text-lg mt-1">Apa yang membedakan ilmu pengetahuan dari sesuatu yang bukan ilmu (Pseudoscience)?</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-[#12182b]/70 backdrop-blur-xl border border-sky-400/30 rounded-2xl p-6">
+            <span class="bg-sky-400/15 text-sky-400 text-xs font-semibold px-3 py-1 rounded-full inline-block mb-3">ILMU PENGETAHUAN (SCIENCE)</span>
+            <ul class="space-y-2 text-sm text-slate-200">
+              <li class="flex items-start gap-2"><span class="text-sky-400 font-bold">✓</span> Teori harus memiliki kemungkinan untuk diuji.</li>
+              <li class="flex items-start gap-2"><span class="text-sky-400 font-bold">✓</span> Dalam kondisi tertentu dapat terbukti salah (falsifiable).</li>
+              <li class="flex items-start gap-2"><span class="text-sky-400 font-bold">✓</span> Terbuka terhadap pengujian empiris.</li>
+            </ul>
+          </div>
+
+          <div class="bg-[#12182b]/70 backdrop-blur-xl border border-rose-500/30 rounded-2xl p-6">
+            <span class="bg-rose-500/15 text-rose-400 text-xs font-semibold px-3 py-1 rounded-full inline-block mb-3">ILMU SEMU (PSEUDOSCIENCE)</span>
+            <ul class="space-y-2 text-sm text-slate-200">
+              <li class="flex items-start gap-2"><span class="text-rose-400 font-bold">✕</span> Hanya menyatakan "Tidak mungkin dibuktikan salah".</li>
+              <li class="flex items-start gap-2"><span class="text-rose-400 font-bold">✕</span> Kebenaran dogma tanpa pengujian ulang.</li>
+              <li class="flex items-start gap-2"><span class="text-rose-400 font-bold">✕</span> Menolak bukti kontradiktif.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mt-6 bg-gradient-to-r from-indigo-500/10 via-cyan-500/10 to-indigo-500/10 border border-sky-400/30 rounded-2xl p-5 text-center">
+          <strong class="text-sky-400 text-sm uppercase tracking-wider">Pendekatan Karl Popper:</strong>
+          <p class="text-white text-base md:text-lg mt-1">
+            Tidak cukup sebuah klaim hanya mengatakan "tidak mungkin dibuktikan salah". Kriteria utama keilmiahan adalah keterujian.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 15 — Tantangan Ilmu Pengetahuan di Era Modern -->
+    <section class="slide-section absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col justify-center overflow-y-auto" id="slide-15">
+      <div class="max-w-6xl w-full mx-auto">
+        <div class="mb-6">
+          <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-sky-400 mb-1">
+            <span>15</span> • Tantangan Modern
+          </div>
+          <h2 class="font-title text-3xl md:text-4xl font-extrabold text-white">Tantangan Ilmu Pengetahuan di Era Modern</h2>
+          <p class="text-slate-400 text-base md:text-lg mt-1">Perkembangan teknologi menghasilkan masalah baru dalam pencarian kebenaran.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div class="bg-[#12182b]/70 backdrop-blur-xl border border-white/10 rounded-2xl p-5">
+            <span class="bg-sky-400/15 text-sky-400 text-xs font-bold px-2.5 py-0.5 rounded-full">01</span>
+            <h3 class="font-title text-base font-bold text-white mt-3 mb-1">Ledakan Informasi</h3>
+            <p class="text-xs text-slate-400">Jumlah informasi sangat besar sehingga sulit membedakan fakta dan informasi yang tidak dapat dipercaya.</p>
+          </div>
+
+          <div class="bg-[#12182b]/70 backdrop-blur-xl border border-white/10 rounded-2xl p-5">
+            <span class="bg-rose-500/15 text-rose-400 text-xs font-bold px-2.5 py-0.5 rounded-full">02</span>
+            <h3 class="font-title text-base font-bold text-white mt-3 mb-1">Disinformasi</h3>
+            <p class="text-xs text-slate-400">Informasi yang salah dapat menyebar dengan sangat cepat di media digital.</p>
+          </div>
+
+          <div class="bg-[#12182b]/70 backdrop-blur-xl border border-white/10 rounded-2xl p-5">
+            <span class="bg-indigo-400/15 text-indigo-400 text-xs font-bold px-2.5 py-0.5 rounded-full">03</span>
+            <h3 class="font-title text-base font-bold text-white mt-3 mb-1">Artificial Intelligence</h3>
+            <p class="text-xs text-slate-400">AI menghasilkan peluang baru sekaligus persoalan epistemologis dan etis.</p>
+          </div>
+
+          <div class="bg-[#12182b]/70 backdrop-blur-xl border border-white/10 rounded-2xl p-5">
+            <span class="bg-amber-400/15 text-amber-400 text-xs font-bold px-2.5 py-0.5 rounded-full">04</span>
+            <h3 class="font-title text-base font-bold text-white mt-3 mb-1">Bias Data & Metode</h3>
+            <p class="text-xs text-slate-400">Data dan metode penelitian dapat mengandung bias historis & perseptual tertentu.</p>
+          </div>
+
+          <div class="bg-[#12182b]/70 backdrop-blur-xl border border-white/10 rounded-2xl p-5 sm:col-span-2">
+            <span class="bg-emerald-400/15 text-emerald-400 text-xs font-bold px-2.5 py-0.5 rounded-full">05</span>
+            <h3 class="font-title text-base font-bold text-white mt-3 mb-1">Kompleksitas Masalah Global</h3>
+            <p class="text-xs text-slate-400">Masalah seperti perubahan iklim, pandemi, dan keamanan siber membutuhkan pendekatan lintas berbagai bidang ilmu.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 16 — Contoh Kasus: Artificial Intelligence -->
+    <section class="slide-section absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col justify-center overflow-y-auto" id="slide-16">
+      <div class="max-w-6xl w-full mx-auto">
+        <div class="mb-6">
+          <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-sky-400 mb-1">
+            <span>16</span> • Studi Kasus AI
+          </div>
+          <h2 class="font-title text-3xl md:text-4xl font-extrabold text-white">Contoh Kasus: Artificial Intelligence</h2>
+          <p class="text-slate-400 text-base md:text-lg mt-1">AI dapat digunakan untuk menghasilkan informasi dalam jumlah besar, melahirkan 4 pertanyaan filsafat:</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div class="bg-[#12182b]/70 backdrop-blur-xl border border-white/10 rounded-2xl p-5">
+            <span class="text-sky-400 font-bold text-xs uppercase">1. Kebenaran Informasi AI</span>
+            <h4 class="font-title text-base font-bold text-white mt-1 mb-1">Apakah selalu benar?</h4>
+            <p class="text-xs md:text-sm text-slate-300">Tidak. Output AI perlu diverifikasi ulang karena risiko halusinasi data.</p>
+          </div>
+
+          <div class="bg-[#12182b]/70 backdrop-blur-xl border border-white/10 rounded-2xl p-5">
+            <span class="text-indigo-400 font-bold text-xs uppercase">2. Sumber Pengetahuan AI</span>
+            <h4 class="font-title text-base font-bold text-white mt-1 mb-1">Dari mana berasal?</h4>
+            <p class="text-xs md:text-sm text-slate-300">AI belajar dari data dan pola statistik yang terdapat dalam dataset pelatihan.</p>
+          </div>
+
+          <div class="bg-[#12182b]/70 backdrop-blur-xl border border-white/10 rounded-2xl p-5">
+            <span class="text-amber-400 font-bold text-xs uppercase">3. Hakikat Pemahaman</span>
+            <h4 class="font-title text-base font-bold text-white mt-1 mb-1">Memahami vs Memproses?</h4>
+            <p class="text-xs md:text-sm text-slate-300">Persoalan filosofis apakah AI memiliki kecerdasan sejati atau sekadar memproses simbol data.</p>
+          </div>
+
+          <div class="bg-[#12182b]/70 backdrop-blur-xl border border-white/10 rounded-2xl p-5">
+            <span class="text-emerald-400 font-bold text-xs uppercase">4. Tanggung Jawab Etis</span>
+            <h4 class="font-title text-base font-bold text-white mt-1 mb-1">Siapa yang bertanggung jawab?</h4>
+            <p class="text-xs md:text-sm text-slate-300">Persoalan etika mengenai pengembang, pengguna, dan pengambil kebijakan sistem AI.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 17 — Hubungan Filsafat dan Ilmu Pengetahuan -->
+    <section class="slide-section absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col justify-center overflow-y-auto" id="slide-17">
+      <div class="max-w-6xl w-full mx-auto">
+        <div class="mb-6">
+          <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-sky-400 mb-1">
+            <span>17</span> • Komparasi & Komplementer
+          </div>
+          <h2 class="font-title text-3xl md:text-4xl font-extrabold text-white">Hubungan Filsafat & Ilmu Pengetahuan</h2>
+          <p class="text-slate-400 text-base md:text-lg mt-1">Keduanya tidak saling meniadakan, melainkan saling melengkapi.</p>
+        </div>
+
+        <div class="rounded-2xl overflow-hidden border border-white/10 bg-[#12182b]/70 backdrop-blur-xl mb-6">
+          <table class="w-full border-collapse text-left text-xs md:text-sm">
+            <thead>
+              <tr class="bg-slate-900/90 border-b border-white/10 font-title font-bold text-sm md:text-base">
+                <th class="p-4 text-indigo-400 w-1/2">Filsafat</th>
+                <th class="p-4 text-sky-400 w-1/2">Ilmu Pengetahuan</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-white/5 text-slate-200">
+              <tr class="hover:bg-white/5 transition-colors">
+                <td class="p-3.5">Mengajukan pertanyaan fundamental</td>
+                <td class="p-3.5">Menguji fenomena secara sistematis</td>
+              </tr>
+              <tr class="hover:bg-white/5 transition-colors">
+                <td class="p-3.5">Membahas asumsi dasar</td>
+                <td class="p-3.5">Mengembangkan teori dan model</td>
+              </tr>
+              <tr class="hover:bg-white/5 transition-colors">
+                <td class="p-3.5">Mengkaji konsep</td>
+                <td class="p-3.5">Menggunakan metode penelitian</td>
+              </tr>
+              <tr class="hover:bg-white/5 transition-colors">
+                <td class="p-3.5">Mempertanyakan batas pengetahuan</td>
+                <td class="p-3.5">Menghasilkan pengetahuan empiris</td>
+              </tr>
+              <tr class="hover:bg-white/5 transition-colors">
+                <td class="p-3.5">Mengkaji nilai dan implikasi</td>
+                <td class="p-3.5">Menghasilkan teknologi dan penerapan</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="bg-sky-400/10 border border-sky-400/30 rounded-2xl p-4 text-center">
+          <p class="text-white text-sm md:text-base">
+            Ilmu bertanya <strong>“bagaimana?”</strong>, sedangkan Filsafat bertanya <strong>“mengapa?”</strong>, <strong>“apa artinya?”</strong>, dan <strong>“apa batasnya?”</strong>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 18 — Kesimpulan -->
+    <section class="slide-section absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col justify-center overflow-y-auto" id="slide-18">
+      <div class="max-w-5xl w-full mx-auto text-center">
+        <div class="mb-6">
+          <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-sky-400 mb-1">
+            <span>18</span> • Rangkuman Akhir
+          </div>
+          <h2 class="font-title text-3xl md:text-5xl font-extrabold text-white">Kesimpulan</h2>
+          <p class="text-slate-400 text-sm md:text-base mt-1">Masalah ilmu pengetahuan bukan hanya mengenai bagaimana mendapatkan informasi.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 text-left">
+          <div class="bg-[#12182b]/70 backdrop-blur-xl border border-white/10 rounded-2xl p-6">
+            <h3 class="text-sky-400 font-title text-base font-bold mb-3">Persoalan Utama yang Dipelajari:</h3>
+            <ul class="space-y-2 text-xs md:text-sm text-slate-200">
+              <li class="flex items-center gap-2"><span class="text-sky-400 font-bold">✓</span> Dari mana pengetahuan berasal?</li>
+              <li class="flex items-center gap-2"><span class="text-sky-400 font-bold">✓</span> Bagaimana menentukan kebenaran?</li>
+              <li class="flex items-center gap-2"><span class="text-sky-400 font-bold">✓</span> Metode apa yang dapat digunakan?</li>
+              <li class="flex items-center gap-2"><span class="text-sky-400 font-bold">✓</span> Apakah ilmu dapat benar-benar objektif?</li>
+              <li class="flex items-center gap-2"><span class="text-sky-400 font-bold">✓</span> Apa batas ilmu pengetahuan?</li>
+              <li class="flex items-center gap-2"><span class="text-sky-400 font-bold">✓</span> Bagaimana ilmu berhubungan dengan etika & teknologi?</li>
+            </ul>
+          </div>
+
+          <div class="bg-gradient-to-br from-indigo-500/20 via-cyan-500/10 to-indigo-500/20 border border-sky-400/40 rounded-2xl p-6 flex flex-col justify-center">
+            <span class="bg-amber-400/20 text-amber-300 text-xs font-bold px-3 py-1 rounded-full self-start mb-3">INTI PEMIKIRAN</span>
+            <p class="text-white text-base md:text-lg font-semibold leading-relaxed">
+              “Ilmu pengetahuan memberikan manusia kemampuan untuk memahami dan mengubah dunia, sedangkan filsafat membantu manusia mempertanyakan dasar, batas, makna, dan konsekuensi dari pengetahuan tersebut.”
+            </p>
+          </div>
+        </div>
+
+        <div class="text-slate-400 text-xs md:text-sm">
+          Terima Kasih • Diskusi & Tanya Jawab
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Bottom Navigation Dock Controls -->
+  <footer class="fixed bottom-0 left-0 right-0 h-16 flex items-center justify-between px-4 md:px-8 z-50 bg-[#070913]/90 backdrop-blur-xl border-t border-white/10">
+    <div class="hidden md:flex items-center gap-2 text-xs text-slate-400">
+      <span>Gunakan tombol <span class="bg-white/10 px-1.5 py-0.5 rounded font-mono text-[10px]">←</span> <span class="bg-white/10 px-1.5 py-0.5 rounded font-mono text-[10px]">→</span> atau <span class="bg-white/10 px-1.5 py-0.5 rounded font-mono text-[10px]">Space</span> untuk navigasi</span>
+    </div>
+
+    <div class="flex items-center gap-3 mx-auto md:mx-0">
+      <button id="btnPrev" aria-label="Sebelumnya" class="flex items-center gap-2 px-4 py-2 rounded-xl font-title text-sm font-semibold border border-white/10 bg-white/5 text-slate-100 hover:bg-sky-500/15 hover:border-sky-400 hover:text-sky-400 disabled:opacity-30 disabled:cursor-not-allowed transition-all">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+        Sebelumnya
+      </button>
+
+      <button id="btnNext" aria-label="Selanjutnya" class="flex items-center gap-2 px-5 py-2 rounded-xl font-title text-sm font-semibold bg-gradient-to-r from-indigo-500 to-cyan-500 text-white hover:shadow-lg hover:shadow-cyan-500/30 disabled:opacity-30 disabled:cursor-not-allowed transition-all">
+        Selanjutnya
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <button id="btnAutoPlay" title="Mulai Auto-play" aria-label="Auto play" class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 hover:border-sky-400 hover:text-sky-400 hover:bg-white/10 transition-all flex items-center justify-center text-slate-200">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      </button>
+    </div>
+  </footer>
+
+  <!-- Overview Modal (Thumbnail Grid) -->
+  <div id="overviewModal" class="fixed inset-0 bg-[#070913]/95 backdrop-blur-2xl z-[200] flex flex-col p-6 opacity-0 invisible transition-all duration-300">
+    <div class="flex items-center justify-between pb-4 mb-4 border-b border-white/10">
+      <h3 class="font-title text-xl font-bold text-white">Daftar Slide Presentasi</h3>
+      <button id="btnCloseOverview" title="Tutup" aria-label="Tutup Overview" class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 hover:border-sky-400 hover:text-sky-400 flex items-center justify-center text-slate-200">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div id="overviewGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 overflow-y-auto pr-2">
+      <!-- Generated via JS -->
+    </div>
+  </div>
+
+  <!-- JavaScript Presentation Engine -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const slides = document.querySelectorAll('.slide-section');
+      const totalSlides = slides.length;
+      let currentSlide = 0;
+      let autoPlayInterval = null;
+
+      const slideCounter = document.getElementById('slideCounter');
+      const progressBar = document.getElementById('progressBar');
+      const btnPrev = document.getElementById('btnPrev');
+      const btnNext = document.getElementById('btnNext');
+      const btnOverview = document.getElementById('btnOverview');
+      const btnCloseOverview = document.getElementById('btnCloseOverview');
+      const overviewModal = document.getElementById('overviewModal');
+      const overviewGrid = document.getElementById('overviewGrid');
+      const btnFullscreen = document.getElementById('btnFullscreen');
+      const btnAutoPlay = document.getElementById('btnAutoPlay');
+
+      // Populate Overview Grid
+      slides.forEach((slide, idx) => {
+        const titleEl = slide.querySelector('h2') || slide.querySelector('h1');
+        const titleText = titleEl ? titleEl.innerText : `Slide ${idx + 1}`;
+        
+        const item = document.createElement('div');
+        item.className = `overview-item bg-[#12182b]/70 border border-white/10 rounded-xl p-4 cursor-pointer hover:border-sky-400 hover:bg-[#1c2541] hover:-translate-y-1 transition-all flex flex-col justify-between h-32 ${idx === 0 ? 'border-indigo-400 bg-indigo-500/20' : ''}`;
+        item.innerHTML = `
+          <div class="font-title text-xs font-bold text-sky-400">SLIDE ${String(idx + 1).padStart(2, '0')}</div>
+          <div class="font-semibold text-xs md:text-sm text-slate-100 line-clamp-2 mt-2">${titleText}</div>
+        `;
+        item.addEventListener('click', () => {
+          goToSlide(idx);
+          closeOverview();
+        });
+        overviewGrid.appendChild(item);
+      });
+
+      function updateSlideUI() {
+        slides.forEach((slide, idx) => {
+          if (idx === currentSlide) {
+            slide.classList.add('active');
+          } else {
+            slide.classList.remove('active');
+          }
+        });
+
+        // Update Counter & Progress
+        slideCounter.innerText = `Slide ${String(currentSlide + 1).padStart(2, '0')} / ${totalSlides}`;
+        const progressPct = ((currentSlide + 1) / totalSlides) * 100;
+        progressBar.style.width = `${progressPct}%`;
+
+        // Update Buttons
+        btnPrev.disabled = currentSlide === 0;
+        btnNext.disabled = currentSlide === totalSlides - 1;
+
+        // Update Overview Item Highlight
+        const overviewItems = overviewGrid.querySelectorAll('.overview-item');
+        overviewItems.forEach((item, idx) => {
+          if (idx === currentSlide) {
+            item.classList.add('border-indigo-400', 'bg-indigo-500/20');
+            item.classList.remove('border-white/10', 'bg-[#12182b]/70');
+          } else {
+            item.classList.remove('border-indigo-400', 'bg-indigo-500/20');
+            item.classList.add('border-white/10', 'bg-[#12182b]/70');
+          }
+        });
+      }
+
+      function goToSlide(index) {
+        if (index >= 0 && index < totalSlides) {
+          currentSlide = index;
+          updateSlideUI();
+        }
+      }
+
+      function nextSlide() {
+        if (currentSlide < totalSlides - 1) {
+          currentSlide++;
+          updateSlideUI();
+        }
+      }
+
+      function prevSlide() {
+        if (currentSlide > 0) {
+          currentSlide--;
+          updateSlideUI();
+        }
+      }
+
+      function openOverview() {
+        overviewModal.classList.remove('opacity-0', 'invisible');
+        overviewModal.classList.add('opacity-100', 'visible');
+      }
+
+      function closeOverview() {
+        overviewModal.classList.remove('opacity-100', 'visible');
+        overviewModal.classList.add('opacity-0', 'invisible');
+      }
+
+      function toggleFullscreen() {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen().catch(err => {
+            console.error(`Error enabling fullscreen: ${err.message}`);
+          });
+        } else {
+          if (document.exitFullscreen) {
+            document.exitFullscreen();
+          }
+        }
+      }
+
+      function toggleAutoPlay() {
+        if (autoPlayInterval) {
+          clearInterval(autoPlayInterval);
+          autoPlayInterval = null;
+          btnAutoPlay.classList.remove('text-sky-400', 'border-sky-400');
+          btnAutoPlay.classList.add('text-slate-200', 'border-white/10');
+        } else {
+          btnAutoPlay.classList.remove('text-slate-200', 'border-white/10');
+          btnAutoPlay.classList.add('text-sky-400', 'border-sky-400');
+          autoPlayInterval = setInterval(() => {
+            if (currentSlide < totalSlides - 1) {
+              nextSlide();
+            } else {
+              goToSlide(0);
+            }
+          }, 6000);
+        }
+      }
+
+      // Event Listeners
+      btnNext.addEventListener('click', nextSlide);
+      btnPrev.addEventListener('click', prevSlide);
+      btnOverview.addEventListener('click', openOverview);
+      btnCloseOverview.addEventListener('click', closeOverview);
+      btnFullscreen.addEventListener('click', toggleFullscreen);
+      btnAutoPlay.addEventListener('click', toggleAutoPlay);
+
+      // Keyboard Controls
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === 'Space' || e.key === 'PageDown') {
+          e.preventDefault();
+          nextSlide();
+        } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+          e.preventDefault();
+          prevSlide();
+        } else if (e.key === 'Home') {
+          e.preventDefault();
+          goToSlide(0);
+        } else if (e.key === 'End') {
+          e.preventDefault();
+          goToSlide(totalSlides - 1);
+        } else if (e.key === 'f' || e.key === 'F') {
+          toggleFullscreen();
+        } else if (e.key === 'm' || e.key === 'M' || e.key === 'o' || e.key === 'O') {
+          if (overviewModal.classList.contains('visible')) {
+            closeOverview();
+          } else {
+            openOverview();
+          }
+        } else if (e.key === 'Escape') {
+          closeOverview();
+        }
+      });
+
+      // Touch Gestures (Swipe)
+      let touchStartX = 0;
+      let touchEndX = 0;
+
+      document.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      }, false);
+
+      document.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+      }, false);
+
+      function handleSwipe() {
+        const threshold = 50;
+        if (touchEndX < touchStartX - threshold) {
+          nextSlide();
+        } else if (touchEndX > touchStartX + threshold) {
+          prevSlide();
+        }
+      }
+
+      // Initial Call
+      updateSlideUI();
+    });
+  </script>
+</body>
+</html>
