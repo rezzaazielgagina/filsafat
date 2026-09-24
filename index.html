@@ -75,6 +75,13 @@
       visibility: visible;
       transform: scale(1) translateY(0);
     }
+
+    /* Safe centering: freeze vertically when it fits, top-align when it
+       overflows so the start of the section is always reachable on mobile */
+    .slide-section > div {
+      margin-top: auto;
+      margin-bottom: auto;
+    }
   </style>
 </head>
 <body class="bg-[#070913] text-slate-100 font-body overflow-hidden w-screen h-screen relative">
@@ -118,7 +125,7 @@
   <main class="relative w-screen h-[calc(100vh-128px)] mt-16 z-10">
 
     <!-- Slide 1 — Judul -->
-    <section class="slide-section active absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col justify-center overflow-y-auto" id="slide-1">
+    <section class="slide-section active absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col overflow-y-auto" id="slide-1">
       <div class="max-w-4xl w-full mx-auto text-center">
         <div class="mb-6">
           <span class="inline-block bg-sky-400/15 text-sky-400 border border-sky-400/30 text-md md:text-md font-semibold px-4 py-1.5 rounded-full uppercase tracking-wider">
@@ -171,7 +178,7 @@
     </section>
 
     <!-- Slide 2 — Pengertian Ilmu Pengetahuan -->
-    <section class="slide-section absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col justify-center overflow-y-auto" id="slide-2">
+    <section class="slide-section absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col overflow-y-auto" id="slide-2">
       <div class="max-w-6xl w-full mx-auto">
         <div class="mb-6">
           <div class="inline-flex items-center gap-2 text-md font-bold uppercase tracking-widest text-sky-400 mb-1">
@@ -235,7 +242,7 @@
     </section>
 
     <!-- Slide 3 — Ilmu Pengetahuan dalam Perspektif Filsafat -->
-    <section class="slide-section absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col justify-center overflow-y-auto" id="slide-3">
+    <section class="slide-section absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col overflow-y-auto" id="slide-3">
       <div class="max-w-6xl w-full mx-auto">
         <div class="mb-6">
           <div class="inline-flex items-center gap-2 text-md font-bold uppercase tracking-widest text-sky-400 mb-1">
@@ -275,7 +282,7 @@
     </section>
 
     <!-- Slide 4 — Apa yang Dimaksud dengan "Masalah Ilmu Pengetahuan"? -->
-    <section class="slide-section absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col justify-center overflow-y-auto" id="slide-4">
+    <section class="slide-section absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col overflow-y-auto" id="slide-4">
       <div class="max-w-6xl w-full mx-auto">
         <div class="mb-6">
           <div class="inline-flex items-center gap-2 text-md font-bold uppercase tracking-widest text-sky-400 mb-1">
@@ -332,7 +339,7 @@
     </section>
 
     <!-- Slide 5 — Masalah Sumber Pengetahuan -->
-    <section class="slide-section absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col justify-center overflow-y-auto" id="slide-5">
+    <section class="slide-section absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col overflow-y-auto" id="slide-5">
       <div class="max-w-6xl w-full mx-auto">
         <div class="mb-6">
           <div class="inline-flex items-center gap-2 text-md font-bold uppercase tracking-widest text-sky-400 mb-1">
@@ -396,7 +403,7 @@
     </section>
 
     <!-- Slide 6 — Masalah Kebenaran -->
-    <section class="slide-section absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col justify-center overflow-y-auto" id="slide-6">
+    <section class="slide-section absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col overflow-y-auto" id="slide-6">
       <div class="max-w-6xl w-full mx-auto">
         <div class="mb-6">
           <div class="inline-flex items-center gap-2 text-md font-bold uppercase tracking-widest text-sky-400 mb-1">
@@ -444,7 +451,7 @@
     </section>
 
     <!-- Slide 7 — Masalah Metode Ilmiah -->
-    <section class="slide-section absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col justify-center overflow-y-auto" id="slide-7">
+    <section class="slide-section absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col overflow-y-auto" id="slide-7">
       <div class="max-w-6xl w-full mx-auto">
         <div class="mb-6">
           <div class="inline-flex items-center gap-2 text-md font-bold uppercase tracking-widest text-sky-400 mb-1">
@@ -504,7 +511,7 @@
     </section>
 
     <!-- Slide 8 — Masalah Objektivitas Ilmu -->
-    <section class="slide-section absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col justify-center overflow-y-auto" id="slide-8">
+    <section class="slide-section absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col overflow-y-auto" id="slide-8">
       <div class="max-w-6xl w-full mx-auto">
         <div class="mb-6">
           <div class="inline-flex items-center gap-2 text-md font-bold uppercase tracking-widest text-sky-400 mb-1">
@@ -540,7 +547,7 @@
     </section>
 
     <!-- Slide 9 — Masalah Batas Ilmu Pengetahuan -->
-    <section class="slide-section absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col justify-center overflow-y-auto" id="slide-9">
+    <section class="slide-section absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col overflow-y-auto" id="slide-9">
       <div class="max-w-6xl w-full mx-auto">
         <div class="mb-6">
           <div class="inline-flex items-center gap-2 text-md font-bold uppercase tracking-widest text-sky-400 mb-1">
@@ -580,7 +587,7 @@
     </section>
 
     <!-- Slide 10 — Masalah Ilmu dan Nilai -->
-    <section class="slide-section absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col justify-center overflow-y-auto" id="slide-10">
+    <section class="slide-section absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col overflow-y-auto" id="slide-10">
       <div class="max-w-6xl w-full mx-auto">
         <div class="mb-6">
           <div class="inline-flex items-center gap-2 text-md font-bold uppercase tracking-widest text-sky-400 mb-1">
@@ -629,7 +636,7 @@
     </section>
 
     <!-- Slide 11 — Masalah Etika dalam Ilmu Pengetahuan -->
-    <section class="slide-section absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col justify-center overflow-y-auto" id="slide-11">
+    <section class="slide-section absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col overflow-y-auto" id="slide-11">
       <div class="max-w-6xl w-full mx-auto">
         <div class="mb-6">
           <div class="inline-flex items-center gap-2 text-md font-bold uppercase tracking-widest text-sky-400 mb-1">
@@ -674,7 +681,7 @@
     </section>
 
     <!-- Slide 12 — Ilmu Pengetahuan dan Perubahan Paradigma -->
-    <section class="slide-section absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col justify-center overflow-y-auto" id="slide-12">
+    <section class="slide-section absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col overflow-y-auto" id="slide-12">
       <div class="max-w-6xl w-full mx-auto">
         <div class="mb-6">
           <div class="inline-flex items-center gap-2 text-md font-bold uppercase tracking-widest text-sky-400 mb-1">
@@ -719,7 +726,7 @@
     </section>
 
     <!-- Slide 13 — Apakah Ilmu Pengetahuan Selalu Benar? -->
-    <section class="slide-section absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col justify-center overflow-y-auto" id="slide-13">
+    <section class="slide-section absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col overflow-y-auto" id="slide-13">
       <div class="max-w-6xl w-full mx-auto">
         <div class="mb-6">
           <div class="inline-flex items-center gap-2 text-md font-bold uppercase tracking-widest text-sky-400 mb-1">
@@ -752,7 +759,7 @@
     </section>
 
     <!-- Slide 14 — Masalah Demarkasi -->
-    <section class="slide-section absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col justify-center overflow-y-auto" id="slide-14">
+    <section class="slide-section absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col overflow-y-auto" id="slide-14">
       <div class="max-w-6xl w-full mx-auto">
         <div class="mb-6">
           <div class="inline-flex items-center gap-2 text-md font-bold uppercase tracking-widest text-sky-400 mb-1">
@@ -792,7 +799,7 @@
     </section>
 
     <!-- Slide 15 — Tantangan Ilmu Pengetahuan di Era Modern -->
-    <section class="slide-section absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col justify-center overflow-y-auto" id="slide-15">
+    <section class="slide-section absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col overflow-y-auto" id="slide-15">
       <div class="max-w-6xl w-full mx-auto">
         <div class="mb-6">
           <div class="inline-flex items-center gap-2 text-md font-bold uppercase tracking-widest text-sky-400 mb-1">
@@ -837,7 +844,7 @@
     </section>
 
     <!-- Slide 16 — Contoh Kasus: Artificial Intelligence -->
-    <section class="slide-section absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col justify-center overflow-y-auto" id="slide-16">
+    <section class="slide-section absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col overflow-y-auto" id="slide-16">
       <div class="max-w-6xl w-full mx-auto">
         <div class="mb-6">
           <div class="inline-flex items-center gap-2 text-md font-bold uppercase tracking-widest text-sky-400 mb-1">
@@ -876,7 +883,7 @@
     </section>
 
     <!-- Slide 17 — Hubungan Filsafat dan Ilmu Pengetahuan -->
-    <section class="slide-section absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col justify-center overflow-y-auto" id="slide-17">
+    <section class="slide-section absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col overflow-y-auto" id="slide-17">
       <div class="max-w-6xl w-full mx-auto">
         <div class="mb-6">
           <div class="inline-flex items-center gap-2 text-md font-bold uppercase tracking-widest text-sky-400 mb-1">
@@ -928,7 +935,7 @@
     </section>
 
     <!-- Slide 18 — Kesimpulan -->
-    <section class="slide-section absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col justify-center overflow-y-auto" id="slide-18">
+    <section class="slide-section absolute inset-0 px-6 md:px-16 lg:px-24 py-8 flex flex-col overflow-y-auto" id="slide-18">
       <div class="max-w-5xl w-full mx-auto text-center">
         <div class="mb-6">
           <div class="inline-flex items-center gap-2 text-md font-bold uppercase tracking-widest text-sky-400 mb-1">
@@ -1046,6 +1053,7 @@
         slides.forEach((slide, idx) => {
           if (idx === currentSlide) {
             slide.classList.add('active');
+            slide.scrollTop = 0;
           } else {
             slide.classList.remove('active');
           }
